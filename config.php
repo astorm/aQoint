@@ -1,18 +1,12 @@
 <?php
     require_once 'vendor-tmp/mysql.php';
-	$dbhost = "localhost";
+    $config = include 'config-tmp/config.php';
+	$dbhost = $config['dbhost'];
 
-	//ESAi
-	$dbname = "bleng3_aqoint";
-	$dbuser = "bleng3_aqoint";
+	$dbname = $config['dbname'];
+	$dbuser = $config['dbuser'];
 
-	/*
-	//local
-	$dbname = "contactms";
-	$dbuser = "contactms";
-	*/
-
-	$dbpass = "aq0int";
+	$dbpass = $config['dbpass'];
 
 	DEFINE('TBL_CONTACTS', "contacts");
 	DEFINE('TBL_NOTES', "notes");
@@ -21,4 +15,8 @@
 	$db = mysql_select_db($dbname);
 
 	DEFINE('INSITE', true);
+
+	function getNonceFromPost() {
+	    return isset($_POST['nonce']) ? $_POST['nonce'] : NULL;
+	}
 ?>
